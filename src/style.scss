@@ -1,0 +1,29 @@
+$main-color: #11318a;
+$ships: rgb(37, 33, 33);
+
+
+body {
+    display: flex;
+    background-color: $main-color;
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+#playground{
+    display:grid;
+    grid-template-columns: repeat(8, 1fr);
+    grid-template-rows: repeat(8, 1fr);
+    margin: 50px auto;
+
+    
+}
+.cell {
+    width: 40px;
+    height: 40px;
+    border: 1px solid black;
+    display: inline-block;
+}

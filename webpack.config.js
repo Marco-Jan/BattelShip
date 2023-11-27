@@ -26,7 +26,8 @@ module.exports = {
             directory: path.join(__dirname, 'dist'),
         },
         compress: true,
-        port: 3010, // default 8000
+        port: 8000, // default 8000
+        hot: true
     },
 };
 

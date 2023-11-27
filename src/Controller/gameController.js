@@ -1,8 +1,8 @@
 'use strict'
 
-import GameBoard from './Model/gameModel.js';
-import { displayGrid, displayHitMessage } from './View/gameView.js';
-import { pushShip, checkHit, decreaseLife } from './Model/gameModel.js';
+import GameBoard from '../Model/gameModel.js';
+import { displayGrid, displayHitMessage } from '../View/gameView.js';
+import { pushShip, checkHit, decreaseLife } from '../Model/gameModel.js';
 
 class GameController {
   constructor(gridSizex, gridSizey) {
