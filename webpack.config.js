@@ -20,5 +20,13 @@ module.exports = {
         ],
 
     },
+
+    devServer: {
+        static: {
+            directory: path.join(__dirname, 'dist'),
+        },
+        compress: true,
+        port: 3010, // default 8000
+    },
 };
 
