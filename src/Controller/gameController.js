@@ -2,7 +2,7 @@
 
 import GameBoard from '../Model/gameModel.js';
 import { displayGrid, displayHitMessage } from '../View/gameView.js';
-import { pushShip, checkHit, decreaseLife } from '../Model/gameModel.js';
+import { pushShip, checkHit} from '../Model/gameModel.js';
 
 class GameController {
   constructor(gridSizex, gridSizey) {
@@ -29,7 +29,6 @@ class GameController {
     const result = checkHit(x, y, this.gameBoard);
 
     displayHitMessage(result);
-    decreaseLife(result);
   }
 }
 

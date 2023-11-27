@@ -1,6 +1,10 @@
 body {
   display: flex;
+  justify-content: center;
+  align-items: center;
   background-color: #11318a;
+  background-size: contain;
+  background-repeat: no-repeat;
   font-family: "Roboto", sans-serif;
   font-size: 16px;
   font-weight: 400;
@@ -18,8 +22,8 @@ body {
 }
 
 .cell {
-  width: 40px;
-  height: 40px;
+  width: 80px;
+  height: 80px;
   border: 1px solid black;
   display: inline-block;
 }/*# sourceMappingURL=style.css.map */

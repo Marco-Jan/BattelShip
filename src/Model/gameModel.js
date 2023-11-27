@@ -96,19 +96,3 @@ export default class GameBoard {
     }
   }
   
-  export const decreaseLife = (result) => {
-    for (let i = 0; i < ships.life; i++) {
-        const ships = ships[i];
-        console.log(lifes, 'i');
-      
-    
-      if (result === true) {
-        console.log("isHit ist true");
-        // ship.life--;
-        // console.log(ships.life, 'life');
-        // console.log(ships, 'shipafter');
-      } else {
-        console.log("isHit ist false");
-      }
-    }
-  }
