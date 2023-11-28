@@ -1,7 +1,7 @@
 'use strict';
 
 export const displayGrid = (grid, isPlayerGrid) => {
-  const container = document.getElementById(isPlayerGrid ? 'player-grid-container' : 'enemy-grid-container');
+  const container = document.getElementById(isPlayerGrid ? 'player-grid' : 'enemy-grid');
   container.innerHTML = '';
 
   for (let i = 0; i < grid.length; i++) {

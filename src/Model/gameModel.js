@@ -54,7 +54,7 @@ export default class GameBoard {
   export const checkHit = (x, y, gameBoard) => {
     // console.log(gameBoard.grid, "gameboard,grid");
 
-    const cell = gameBoard.grid[x][y];
+    const cell = gameBoard.enemyGrid[x][y];
     console.log(cell,"cell");
 
     return ['4', '3', '2'].includes(cell);

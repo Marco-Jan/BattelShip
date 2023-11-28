@@ -14,11 +14,13 @@ body {
   padding: 0;
 }
 
-#playground {
-  display: grid;
-  grid-template-columns: repeat(8, 1fr);
-  grid-template-rows: repeat(8, 1fr);
-  margin: 50px auto;
+.fieldContainer {
+  border: 1px solid black;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  margin-top: 25%;
 }
 
 .cell {
