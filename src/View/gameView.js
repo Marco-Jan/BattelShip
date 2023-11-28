@@ -1,12 +1,11 @@
 'use strict';
 
-
-export const displayGrid = (gameBoard) => {
-  const container = document.getElementById('grid-container');
+export const displayGrid = (grid, isPlayerGrid) => {
+  const container = document.getElementById(isPlayerGrid ? 'player-grid-container' : 'enemy-grid-container');
   container.innerHTML = '';
 
-  for (let i = 0; i < gameBoard.grid.length; i++) {
-    const row = gameBoard.grid[i];
+  for (let i = 0; i < grid.length; i++) {
+    const row = grid[i];
     const rowElement = document.createElement('div');
     rowElement.classList.add('row');
 
@@ -14,6 +13,7 @@ export const displayGrid = (gameBoard) => {
       const cell = row[j];
       const cellElement = document.createElement('div');
       cellElement.classList.add('cell');
+      cellElement.style.backgroundColor = isPlayerGrid ? "green" : "red";
       cellElement.textContent = cell;
       cellElement.dataset.row = i.toString();
       cellElement.dataset.col = j.toString();
@@ -25,8 +25,7 @@ export const displayGrid = (gameBoard) => {
   }
 }
 
-
 export const displayHitMessage = (isHit) => {
   const message = isHit ? 'Treffer!' : 'Kein Treffer!';
-  console.log(message); 
+  console.log(message);
 }

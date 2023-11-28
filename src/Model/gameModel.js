@@ -1,19 +1,31 @@
 export default class GameBoard {
-    constructor(gridSizex, gridSizey) {
-      this.gridSizex = gridSizex;
-      this.gridSizey = gridSizey;
-      this.grid = [];
-    }
-  
-    createField() {
+  constructor(gridSizex, gridSizey) {
+    this.gridSizex = gridSizex;
+    this.gridSizey = gridSizey;
+    this.playerGrid = [];
+    this.enemyGrid = [];
+  }
+    
+    createFieldPlayer() {
       for (let i = 0; i < this.gridSizey; i++) {
-        const row = [];
+        const rowPlayer = [];
         for (let j = 0; j < this.gridSizex; j++) {
-          row.push('0');
+          rowPlayer.push('0');
         }
-        this.grid.push(row);
+        this.playerGrid.push(rowPlayer);
       }
     }
+
+    createFieldEnemy() {
+      for (let i = 0; i < this.gridSizey; i++) {
+        const rowEnemy = [];
+        for (let j = 0; j < this.gridSizex; j++) {
+          rowEnemy.push('0');
+        }
+        this.enemyGrid.push(rowEnemy);
+      }
+    }
+    
   }
   
   // Die Ship Klasse
@@ -40,7 +52,11 @@ export default class GameBoard {
   
   // Funktionen für die Spiellogik
   export const checkHit = (x, y, gameBoard) => {
+    // console.log(gameBoard.grid, "gameboard,grid");
+
     const cell = gameBoard.grid[x][y];
+    console.log(cell,"cell");
+
     return ['4', '3', '2'].includes(cell);
   }
   
@@ -64,19 +80,19 @@ export default class GameBoard {
     return true;
   }
   
-  export const pushShip = (grid) => {
+  export const pushShip = (enemyGrid) => {
     const ships = [new Ship(4, 4), new Ship(3, 3), new Ship(3, 3), new Ship(2, 2), new Ship(2, 2), new Ship(2, 2)];
     ships.forEach(ship => {
       let placed = false;
       while (!placed) {
-        const randomX = Math.floor(Math.random() * grid.length);
-        const randomY = Math.floor(Math.random() * grid[0].length);
+        const randomX = Math.floor(Math.random() * enemyGrid.length);
+        const randomY = Math.floor(Math.random() * enemyGrid[0].length);
         const direction = Math.random() < 0.5 ? 'horizontal' : 'vertical';
         ship.setPosition([randomX, randomY]);
         ship.setDirection(direction);
   
-        if (isValidPlacement(grid, ship)) {
-          placeShipOnGrid(grid, ship);
+        if (isValidPlacement(enemyGrid, ship)) {
+          placeShipOnGrid(enemyGrid, ship);
           placed = true;
         }
       }
@@ -95,4 +111,3 @@ export default class GameBoard {
       }
     }
   }
-  
