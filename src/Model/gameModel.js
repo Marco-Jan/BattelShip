@@ -29,12 +29,13 @@ export default class GameBoard {
   }
   
   // Die Ship Klasse
-  class Ship {
+export class Ship {
     constructor(length, life) {
       this.length = length;
       this.life = life;
       this.position = [];
       this.direction = '';
+      this.hits = new Array(length).fill(false);
     }
   
     setPosition(position) {
@@ -45,6 +46,19 @@ export default class GameBoard {
       this.direction = direction;
     }
   
+    ishit(positionIndex) {
+      if (positionIndex >= 0 && positionIndex < this.length) {
+        this.hits[positionIndex] = true;
+        console.log("hit",positionIndex);
+        this.life -= 1; // Reduziere das Leben des Schiffs, wenn es getroffen wird
+      }
+    }
+  
+    isSunk() {
+      console.log("isSunk");
+      return this.hits.every(hit => hit);
+    }
+  
     toString() {
       return this.length.toString();
     }
@@ -52,7 +66,6 @@ export default class GameBoard {
   
   // Funktionen für die Spiellogik
   export const checkHit = (x, y, gameBoard) => {
-    // console.log(gameBoard.grid, "gameboard,grid");
 
     const cell = gameBoard.enemyGrid[x][y];
     console.log(cell,"cell");
@@ -111,3 +124,5 @@ export default class GameBoard {
       }
     }
   }
+
+  

@@ -18,14 +18,15 @@ body {
     margin: 0;
     padding: 0;
 }
-#playground{
-    display:grid;
-    grid-template-columns: repeat(8, 1fr);
-    grid-template-rows: repeat(8, 1fr);
-    margin: 50px auto;
+.fieldContainer {
+    border: 1px solid black;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20%;
+  }
 
-    
-}
 .cell {
     width: 80px;
     height: 80px;
