@@ -9,17 +9,24 @@ document.getElementById('myImage').src = myImageSrc;
 
 
 document.getElementById('start-game').addEventListener('click', () => {
-  const playerName = document.getElementById('player-name').value;
-  if (playerName) {
-    document.getElementById('start-screen').style.display = 'none';
-    document.getElementById('warfieldContainer').style.display = 'flex';
+    const playerName = document.getElementById('player-name').value;
+    const selectedCaptain = document.getElementById('captain-select').value;
 
-    const gridSizex = 10;
-    const gridSizey = 10;
-    const gameController = new GameController(gridSizex, gridSizey);
-    gameController.init();
-  } else {
-    showMessage("Bitte gib deinen Namen ein!");
+    if (playerName && selectedCaptain) {
+        document.getElementById('start-screen').style.display = 'none';
+        document.getElementById('warfieldContainer').style.display = 'flex';
+        document.getElementById('use-captain-ability').style.display = 'block';
 
-  }
+        
+
+        const gridSizex = 10;
+        const gridSizey = 10;
+        const gameController = new GameController(gridSizex, gridSizey, playerName);
+        
+        gameController.init();
+        gameController.selectCaptain(selectedCaptain); // Kapitän auswählen
+    } else {
+        showMessage('Bitte gib deinen Namen und wähle einen Kapitän aus!');
+    }
 });
+

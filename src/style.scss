@@ -1,4 +1,4 @@
-$main-color: #11318a;
+$main-color: #d1e70d;
 $ships: rgb(37, 33, 33);
 
 
@@ -104,4 +104,33 @@ body {
     height: 50%;
     // object-fit: cover;
   }
+
+  #captain-select {
+    margin-bottom: 20px;
+    padding: 10px;
+    font-size: 30px;
+}
+
+#game-info {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+}
+
+#player-name-display, #turn-counter-display {
+    padding: 10px;
+    height: 100px;
+    width: 200px;
+    color: black;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+}
+
+#use-captain-ability{
+    padding: 10px;
+    font-size: 30px;
+    border-radius: 8px;
+    cursor: pointer;
+}
   

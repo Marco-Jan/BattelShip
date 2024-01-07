@@ -2,23 +2,28 @@
 import GameBoard, { Ship, pushShip, checkHit, isValidPlacement, placeShipOnGrid, enemyCheckHit } from '../Model/gameModel.js';
 import { displayGrid, displayHitMessage } from '../View/gameView.js';
 import { showMessage } from './messages.js';
+import { William, Giuseppe, Astrid, Katrin } from '../Model/captain.js';
 
 class GameController {
-  constructor(gridSizex, gridSizey) {
+  constructor(gridSizex, gridSizey, playerName) {
     this.gameBoard = new GameBoard(gridSizex, gridSizey);
     this.playerShips = [new Ship(4), new Ship(3), new Ship(3), new Ship(2), new Ship(2), new Ship(2)];
     console.log(this.playerShips.length);
-
     this.boundHandlePlayerGridClick = this.handlePlayerGridClick.bind(this);
     this.boundHandleCellClick = this.handleCellClick.bind(this);
     this.boundHandleKeyPress = this.handleKeyPress.bind(this);
-
     this.enemyShips = [];
     this.currentShipIndex = 0;
     this.currentDirection = 'horizontal';
-    this.isPlayerTurn = true; // Spieler beginnt
-    this.allShipsPlaced = false; // Wird auf true gesetzt, wenn alle Schiffe platziert sind
-    this.enemyMoves = []; // Speichert die Züge des Gegners
+    this.isPlayerTurn = true; 
+    this.allShipsPlaced = false; 
+    this.enemyMoves = []; 
+    this.captains = [William, Giuseppe, Astrid, Katrin];
+    this.selectedCaptain = null;
+    this.playerName = playerName;
+    this.turnCounter = 0;
+    this.captainAbilityAvailable = false;
+
   }
   init() {
     this.gameBoard.createFieldEnemy();
@@ -26,6 +31,15 @@ class GameController {
     pushShip(this.gameBoard.enemyGrid, this.enemyShips);
     displayGrid(this.gameBoard.playerGrid, true); // Spielerfeld
     displayGrid(this.gameBoard.enemyGrid, false); // Gegnerfeld
+    document.getElementById('player-name-display').textContent = `${this.playerName}`;
+    document.getElementById('turn-counter-display').textContent = `Runden: ${this.turnCounter}`;
+
+    const captainAbilityButton = document.getElementById('use-captain-ability');
+        if (captainAbilityButton) {
+            captainAbilityButton.addEventListener('click', () => {
+                this.useCaptainAbility();
+            });
+        }
 
     this.placePlayerShips();
     this.addEventListeners();
@@ -145,6 +159,8 @@ class GameController {
 
     this.isPlayerTurn = false;
     this.enemyMove();
+    this.endTurn();
+
   }
 
   enemyMove() {
@@ -181,9 +197,20 @@ class GameController {
     this.addEventListeners();
     displayGrid(this.gameBoard.enemyGrid, false);
     this.addEventListeners();
+    
+
   }
 
-  
+  endTurn() {
+    this.turnCounter++;
+    document.getElementById('turn-counter-display').textContent = `Runden: ${this.turnCounter}`;
+
+   
+    if (this.turnCounter % 5 === 0) {
+        this.captainAbilityAvailable = true;
+        showMessage("Kapitänsfähigkeit ist jetzt verfügbar!");
+    }
+}
 
 
   checkGameOver() {
@@ -195,6 +222,48 @@ class GameController {
     } else if (allEnemyShipsSunk) {
       showMessage("Glückwunsch! Du hast gewonnen. Alle feindlichen Schiffe sind gesunken!");
     }
+  }
+
+  useCaptainAbility(x, y) {
+    if (this.captainAbilityAvailable) {
+      this.selectedCaptain.useAbility(this.gameBoard, x, y);
+      displayGrid(this.gameBoard.enemyGrid, false); 
+      this.captainAbilityAvailable = false;
+      console.log(`${this.selectedCaptain.name}'s Fähigkeit wurde eingesetzt.`);
+     
+      showMessage(`${this.selectedCaptain.name}'s Fähigkeit wurde eingesetzt.`);
+      this.addEventListeners();
+    } else {
+      console.log("Kapitänsfähigkeit ist derzeit nicht verfügbar.");
+      showMessage("Kapitänsfähigkeit ist derzeit nicht verfügbar.");
+    }
+  }
+
+  
+
+  selectCaptain(name) {
+    switch (name) {
+      case "William":
+        this.selectedCaptain = William;
+        break;
+      case "Giuseppe":
+        this.selectedCaptain = Giuseppe;
+        break;
+      case "Astrid":
+        this.selectedCaptain = Astrid;
+        break;
+      case "Katrin":
+        this.selectedCaptain = Katrin;
+        break;
+      default:
+        console.log("Unbekannter Kapitän");
+        return;
+    }
+
+
+    console.log(`${this.selectedCaptain.name} wurde ausgewählt.`);
+    // Anzeigen, dass der Kapitän ausgewählt wurde
+    showMessage(`${this.selectedCaptain.name} wurde ausgewählt.`);
   }
 }
 
