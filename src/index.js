@@ -1,8 +1,19 @@
-import GameController from './Controller/gameController.js';
+'use strict'
+
 import "./style.css";
+import GameController from './Controller/gameController.js';
 
-const gridSizex = 10;
-const gridSizey = 10;
-const gameController = new GameController(gridSizex, gridSizey);
+document.getElementById('start-game').addEventListener('click', () => {
+  const playerName = document.getElementById('player-name').value;
+  if (playerName) {
+    document.getElementById('start-screen').style.display = 'none';
+    document.getElementById('warfieldContainer').style.display = 'flex';
 
-gameController.init();
+    const gridSizex = 10;
+    const gridSizey = 10;
+    const gameController = new GameController(gridSizex, gridSizey);
+    gameController.init();
+  } else {
+    alert('Bitte gib deinen Namen ein!');
+  }
+});

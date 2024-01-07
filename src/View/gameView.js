@@ -13,8 +13,17 @@ export const displayGrid = (grid, isPlayerGrid) => {
       const cell = row[j];
       const cellElement = document.createElement('div');
       cellElement.classList.add('cell');
-      cellElement.style.backgroundColor = isPlayerGrid ? "green" : "red";
-      cellElement.textContent = cell;
+
+      if (cell === 'x') {
+        cellElement.style.backgroundColor = 'red'; 
+      } else if (isPlayerGrid && typeof cell === 'object') {
+        
+        cellElement.style.backgroundColor = 'grey'; 
+      } else {
+        cellElement.style.backgroundColor = 'blue';
+      }
+
+      cellElement.textContent = '';
       cellElement.dataset.row = i.toString();
       cellElement.dataset.col = j.toString();
 
@@ -23,9 +32,4 @@ export const displayGrid = (grid, isPlayerGrid) => {
 
     container.appendChild(rowElement);
   }
-}
-
-export const displayHitMessage = (isHit) => {
-  const message = isHit ? 'Treffer!' : 'Kein Treffer!';
-  console.log(message);
 }
