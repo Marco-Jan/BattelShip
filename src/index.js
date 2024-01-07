@@ -2,6 +2,11 @@
 
 import "./style.css";
 import GameController from './Controller/gameController.js';
+import { showMessage } from './Controller/messages.js';
+import myImageSrc from './img/Firefly Battelship-Wasser 17984.png';
+
+document.getElementById('myImage').src = myImageSrc;
+
 
 document.getElementById('start-game').addEventListener('click', () => {
   const playerName = document.getElementById('player-name').value;
@@ -14,6 +19,7 @@ document.getElementById('start-game').addEventListener('click', () => {
     const gameController = new GameController(gridSizex, gridSizey);
     gameController.init();
   } else {
-    alert('Bitte gib deinen Namen ein!');
+    showMessage("Bitte gib deinen Namen ein!");
+
   }
 });

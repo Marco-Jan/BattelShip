@@ -1,6 +1,7 @@
 'use strict'
 import GameBoard, { Ship, pushShip, checkHit, isValidPlacement, placeShipOnGrid, enemyCheckHit } from '../Model/gameModel.js';
 import { displayGrid, displayHitMessage } from '../View/gameView.js';
+import { showMessage } from './messages.js';
 
 class GameController {
   constructor(gridSizex, gridSizey) {
@@ -26,11 +27,12 @@ class GameController {
     displayGrid(this.gameBoard.playerGrid, true); // Spielerfeld
     displayGrid(this.gameBoard.enemyGrid, false); // Gegnerfeld
 
-
     this.placePlayerShips();
     this.addEventListeners();
 
+    showMessage("Spiel gestartet - Platziere deine Schiffe");
   }
+
 
   addEventListeners() {
     const playerCells = document.getElementById('player-grid').getElementsByClassName('cell');
@@ -56,6 +58,8 @@ class GameController {
 
     if (this.currentShipIndex >= this.playerShips.length) {
       console.log("Es sind keine weiteren Schiffe zu platzieren.");
+      showMessage(`Es sind keine weiteren Schiffe zu platzieren.`);
+
       return;
     }
     const cell = event.target;
@@ -83,14 +87,19 @@ class GameController {
           console.log(`Platziere das nächste Schiff (Größe: ${this.playerShips[this.currentShipIndex].length})`);
         } else {
           console.log('Alle Schiffe wurden platziert.');
+
+          showMessage(`Spieler beginnt.`);
           console.log('Spieler beginnt.');
 
 
         }
       } else {
         console.log('Ungültige Platzierung. Versuche es erneut.');
+        showMessage(`Ungültige Platzierung. Versuche es erneut.`);
       }
     } else {
+      showMessage(`Diese Zelle ist bereits belegt. Wähle eine andere.`);
+
       console.log('Diese Zelle ist bereits belegt. Wähle eine andere.');
     }
 
@@ -107,6 +116,8 @@ class GameController {
     if (event.key === ' ' && this.currentShipIndex < this.playerShips.length) {
       this.currentDirection = this.currentDirection === 'horizontal' ? 'vertical' : 'horizontal';
       console.log(`Aktuelle Ausrichtung: ${this.currentDirection}`);
+      showMessage(`Aktuelle Ausrichtung: ${this.currentDirection}`);
+
     }
   }
 
@@ -148,9 +159,11 @@ class GameController {
       hit = enemyCheckHit(x, y, this.gameBoard, this);
 
       if (hit) {
+        showMessage(`NPC hat getroffen bei (${x}, ${y})!`);
         console.log(`NPC hat getroffen bei (${x}, ${y})!`);
 
       } else {
+        showMessage(`NPC hat verfehlt bei (${x}, ${y}). Player ist dran.`);
         console.log(`NPC hat verfehlt bei (${x}, ${y}).`);
         console.log(`Player ist dran.`);
 
@@ -161,7 +174,7 @@ class GameController {
       this.addEventListeners();
       displayGrid(this.gameBoard.enemyGrid, false);
       this.addEventListeners();
-    }, 3000);
+    }, 1000);
 
     this.isPlayerTurn = true;
     displayGrid(this.gameBoard.playerGrid, true);
@@ -170,21 +183,21 @@ class GameController {
     this.addEventListeners();
   }
 
+  
+
 
   checkGameOver() {
     const allPlayerShipsSunk = this.playerShips.every(ship => ship.isSunk());
     const allEnemyShipsSunk = this.enemyShips.every(ship => ship.isSunk());
 
     if (allPlayerShipsSunk) {
-      console.log("Game Over - Alle deine Schiffe sind gesunken! Gegner gewinnt.");
+      showMessage("Game Over - Alle deine Schiffe sind gesunken! Gegner gewinnt.");
     } else if (allEnemyShipsSunk) {
-      console.log("Glückwunsch! Du hast gewonnen. Alle feindlichen Schiffe sind gesunken!");
+      showMessage("Glückwunsch! Du hast gewonnen. Alle feindlichen Schiffe sind gesunken!");
     }
   }
-
 }
 
 
-// displayGrid(this.gameBoard.playerGrid, true); // Spielerfeld
-// displayGrid(this.gameBoard.enemyGrid, false); // Gegnerfeld
+
 export default GameController;

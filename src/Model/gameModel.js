@@ -1,4 +1,7 @@
 'use strict'
+
+import { showMessage } from '../Controller/messages.js';
+
 export default class GameBoard {
   constructor(gridSizex, gridSizey) {
     this.gridSizex = gridSizex;
@@ -71,6 +74,7 @@ export class Ship {
 
   isSunk() {
     if (this.life === 0) {
+      showMessage(`Dein Schiff is Gesunken!`);
       console.log("gesunken");
     }
     return this.hits.every(hit => hit);
@@ -94,14 +98,17 @@ export const checkHit = (x, y, gameBoard, gameController) => {
 
       if (ship.isSunk()) {
         console.log('Schiff gesunken!');
+        showMessage(`Schiff is Gesunken!`);
         gameController.checkGameOver();
       } else {
         console.log('Schiff getroffen!');
+        showMessage(`Schiff is getroffen!`);
       }
       return true;
     }
   }
   console.log('Kein Treffer!');
+  showMessage(`Kein Treffer!`);
   return false;
 }
 
@@ -114,14 +121,18 @@ export const enemyCheckHit = (x, y, gameBoard, gameController) => {
       gameBoard.markHit(ship.position, segment, ship.direction, false);
 
       if (ship.isSunk()) {
+        showMessage(`Dein Schiff is Gesunken!`);
         console.log('PlayerSchiff gesunken!');
         gameController.checkGameOver();
       } else {
+        showMessage(`Dein Schiff wurde getroffen!`);
         console.log('Player Schiff getroffen!');
       }
       return true;
     }
   }
+  
+  showMessage(`Kein Treffer!`);
   console.log('Kein Treffer!');
   return false;
 }
