@@ -14,15 +14,30 @@
     <div id="start-screen">
 
         <input type="text" id="player-name" placeholder="Dein Name">
+        <select id="captain-select">
+            <option value="">Wähle einen Kapitän</option>
+            <option value="William">William</option>
+            <option value="Giuseppe">Giuseppe</option>
+            <option value="Astrid">Astrid</option>
+            <option value="Katrin">Katrin</option>
+        </select>
         <button id="start-game">Spiel starten</button>
     </div>
 
     <div id="warfieldContainer" style="display:none;">
+        <div id="game-info">
+            <div id="player-name-display"></div>
+            <div id="turn-counter-display"></div>
+        </div>
+        
+        <button id="use-captain-ability" style="display: none;">Fähigkeiten let's go</button>
+
+
         <div id="player-grid" class="fieldContainer"></div>
         <div id="enemy-grid" class="fieldContainer"></div>
     </div>
 
-   
+
     <div id="message-overlay" style="display: none;">
         <div id="message-content"></div>
     </div>
