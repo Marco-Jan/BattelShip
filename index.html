@@ -5,11 +5,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Battelfield</title>
-    <!-- <link rel="stylesheet" type="text/css" href="../src/style.css"> -->
+    <link rel="stylesheet" type="text/css" href="../src/style.css">
 </head>
 
 <body>
+    <img id="myImage" src="">
+
     <div id="start-screen">
+
         <input type="text" id="player-name" placeholder="Dein Name">
         <button id="start-game">Spiel starten</button>
     </div>
@@ -18,6 +21,12 @@
         <div id="player-grid" class="fieldContainer"></div>
         <div id="enemy-grid" class="fieldContainer"></div>
     </div>
+
+   
+    <div id="message-overlay" style="display: none;">
+        <div id="message-content"></div>
+    </div>
+
 
     <script type="module" src="main.js"></script>
 
