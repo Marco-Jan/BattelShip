@@ -1,4 +1,4 @@
-import { Ship } from './gameModel.js'; // Passe den Pfad an, falls notwendig
+import { Ship } from './gameModel.js';
 
 
 export class Captain {

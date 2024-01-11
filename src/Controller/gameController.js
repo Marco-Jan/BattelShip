@@ -262,7 +262,7 @@ class GameController {
 
 
     console.log(`${this.selectedCaptain.name} wurde ausgewählt.`);
-    // Anzeigen, dass der Kapitän ausgewählt wurde
+    
     showMessage(`${this.selectedCaptain.name} wurde ausgewählt.`);
   }
 }

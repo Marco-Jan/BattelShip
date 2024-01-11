@@ -24,7 +24,7 @@ document.getElementById('start-game').addEventListener('click', () => {
         const gameController = new GameController(gridSizex, gridSizey, playerName);
         
         gameController.init();
-        gameController.selectCaptain(selectedCaptain); // Kapitän auswählen
+        gameController.selectCaptain(selectedCaptain); 
     } else {
         showMessage('Bitte gib deinen Namen und wähle einen Kapitän aus!');
     }
