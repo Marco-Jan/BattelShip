@@ -108,7 +108,10 @@ export const checkHit = (x, y, gameBoard, gameController) => {
     }
   }
   console.log('Kein Treffer!');
-  showMessage(`Kein Treffer!`);
+  setTimeout(()=>{
+    showMessage(`Kein Treffer!`);
+  },1000);
+  
   return false;
 }
 
@@ -132,7 +135,9 @@ export const enemyCheckHit = (x, y, gameBoard, gameController) => {
     }
   }
   
-  showMessage(`Kein Treffer!`);
+  setTimeout(()=>{
+    showMessage(`Kein Treffer!`);
+  },1000);
   console.log('Kein Treffer!');
   return false;
 }

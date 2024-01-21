@@ -213,9 +213,13 @@ class GameController {
     document.getElementById('turn-counter-display').textContent = `Runden: ${this.turnCounter}`;
 
 
-    if (this.turnCounter % 5 === 0) {
+    if (this.turnCounter % 1 === 0) {
       this.captainAbilityAvailable = true;
       showMessage("Kapitänsfähigkeit ist jetzt verfügbar!");
+      const captainAbilityAvailable = document.getElementById('use-captain-ability');
+        captainAbilityAvailable.style.backgroundColor = "green";
+      
+      
     }
   }
 
