@@ -3,8 +3,8 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: #d1e70d;
-  background-size: contain;
+  background-image: url("img/backgroundBattelshipMain.png");
+  background-size: cover;
   background-repeat: no-repeat;
   font-family: "Roboto", sans-serif;
   font-size: 40px;
@@ -25,13 +25,13 @@ body {
 
 #player-name {
   margin-bottom: 20px;
-  font-size: 30px;
-  padding: 20px;
+  font-size: 15px;
+  padding: 5px;
 }
 
 #start-game {
   padding: 10px 20px;
-  font-size: 30px;
+  font-size: 20px;
   border-radius: 8px;
   cursor: pointer;
 }
@@ -91,15 +91,16 @@ body {
 }
 
 #myImage {
-  margin-top: 10%;
+  margin-top: 5%;
+  margin-bottom: 2%;
   width: 50%;
   height: 50%;
 }
 
 #captain-select {
   margin-bottom: 20px;
-  padding: 10px;
-  font-size: 30px;
+  padding: 5px;
+  font-size: 15px;
 }
 
 #game-info {
