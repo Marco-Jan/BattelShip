@@ -15,9 +15,9 @@ class GameController {
     this.enemyShips = [];
     this.currentShipIndex = 0;
     this.currentDirection = 'horizontal';
-    this.isPlayerTurn = true; 
-    this.allShipsPlaced = false; 
-    this.enemyMoves = []; 
+    this.isPlayerTurn = true;
+    this.allShipsPlaced = false;
+    this.enemyMoves = [];
     this.captains = [William, Giuseppe, Astrid, Katrin];
     this.selectedCaptain = null;
     this.playerName = playerName;
@@ -35,16 +35,18 @@ class GameController {
     document.getElementById('turn-counter-display').textContent = `Runden: ${this.turnCounter}`;
 
     const captainAbilityButton = document.getElementById('use-captain-ability');
-        if (captainAbilityButton) {
-            captainAbilityButton.addEventListener('click', () => {
-                this.useCaptainAbility();
-            });
-        }
+    if (captainAbilityButton) {
+      captainAbilityButton.addEventListener('click', () => {
+        this.useCaptainAbility();
+      });
+    }
 
     this.placePlayerShips();
     this.addEventListeners();
+    setTimeout(() => {
+      showMessage("Spiel gestartet - Platziere deine Schiffe");
+    }, 1000);
 
-    showMessage("Spiel gestartet - Platziere deine Schiffe");
   }
 
 
@@ -175,13 +177,18 @@ class GameController {
       hit = enemyCheckHit(x, y, this.gameBoard, this);
 
       if (hit) {
-        showMessage(`NPC hat getroffen bei (${x}, ${y})!`);
-        console.log(`NPC hat getroffen bei (${x}, ${y})!`);
+        setTimeout(() => {
+          showMessage(`NPC hat getroffen bei (${x}, ${y})!`);
+          console.log(`NPC hat getroffen bei (${x}, ${y})!`);
+        }, 500)
+
 
       } else {
-        showMessage(`NPC hat verfehlt bei (${x}, ${y}). Player ist dran.`);
-        console.log(`NPC hat verfehlt bei (${x}, ${y}).`);
-        console.log(`Player ist dran.`);
+        setTimeout(() => {
+          showMessage(`NPC hat verfehlt bei (${x}, ${y}). Player ist dran.`);
+          console.log(`NPC hat verfehlt bei (${x}, ${y}).`);
+        }, 500);
+
 
       }
 
@@ -197,7 +204,7 @@ class GameController {
     this.addEventListeners();
     displayGrid(this.gameBoard.enemyGrid, false);
     this.addEventListeners();
-    
+
 
   }
 
@@ -205,12 +212,12 @@ class GameController {
     this.turnCounter++;
     document.getElementById('turn-counter-display').textContent = `Runden: ${this.turnCounter}`;
 
-   
+
     if (this.turnCounter % 5 === 0) {
-        this.captainAbilityAvailable = true;
-        showMessage("Kapitänsfähigkeit ist jetzt verfügbar!");
+      this.captainAbilityAvailable = true;
+      showMessage("Kapitänsfähigkeit ist jetzt verfügbar!");
     }
-}
+  }
 
 
   checkGameOver() {
@@ -227,10 +234,10 @@ class GameController {
   useCaptainAbility(x, y) {
     if (this.captainAbilityAvailable) {
       this.selectedCaptain.useAbility(this.gameBoard, x, y);
-      displayGrid(this.gameBoard.enemyGrid, false); 
+      displayGrid(this.gameBoard.enemyGrid, false);
       this.captainAbilityAvailable = false;
       console.log(`${this.selectedCaptain.name}'s Fähigkeit wurde eingesetzt.`);
-     
+
       showMessage(`${this.selectedCaptain.name}'s Fähigkeit wurde eingesetzt.`);
       this.addEventListeners();
     } else {
@@ -239,7 +246,7 @@ class GameController {
     }
   }
 
-  
+
 
   selectCaptain(name) {
     switch (name) {
@@ -262,7 +269,7 @@ class GameController {
 
 
     console.log(`${this.selectedCaptain.name} wurde ausgewählt.`);
-    
+
     showMessage(`${this.selectedCaptain.name} wurde ausgewählt.`);
   }
 }

@@ -14,6 +14,7 @@ document.getElementById('start-game').addEventListener('click', () => {
 
     if (playerName && selectedCaptain) {
         document.getElementById('start-screen').style.display = 'none';
+        document.getElementById('myImage').style.display = 'none';
         document.getElementById('warfieldContainer').style.display = 'flex';
         document.getElementById('use-captain-ability').style.display = 'block';
 

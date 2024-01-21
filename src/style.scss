@@ -1,4 +1,5 @@
 $main-color: #d1e70d;
+$text-color: #161616;
 $ships: rgb(37, 33, 33);
 
 
@@ -18,7 +19,9 @@ body {
     color: #fdf9f9;
     margin: 0;
     padding: 0;
-    
+    width: 100%;
+    height: 100vh;
+
 }
 
 #start-screen {
@@ -31,51 +34,72 @@ body {
 
 #player-name {
     margin-bottom: 20px;
-    font-size: 15px;
-    padding: 5px;
-}
-
-#start-game {
-    padding: 10px 20px;
     font-size: 20px;
-    border-radius: 8px;
-    cursor: pointer;
-}
-
-#warfieldContainer {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 400px;
-    width: 800px;
-    height: 800px;
-}
-
-.fieldContainer {
-    border: 1px solid black;
-    display: flex;
-    // flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    margin-top: 10%;
-    padding: 50px;
-
+    border-radius: 10px;
+    padding: 10px;
+    background-color: rgba(79, 86, 150, 0.4);
+    color: $text-color;
+    &::placeholder {
+        color: $text-color;
+    }
     
 }
 
+#start-game {
+    padding: 10px 30px;
+    font-size: 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    &::placeholder {
+        color: $text-color;
+    }
+    &:hover {
+        background-color: rgba(79, 86, 150, 0.4);
+        
+    }
+}
+    
+
+#warfieldContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 10%;
+    width: 100%;
+    height: 100%;
+    
+}
+
+.fieldContainer {
+    border: 5px solid $text-color;
+    display: flex;
+    width: 50%;
+    height: 50%;
+    margin-bottom: 100px;
+}
+
+#gridField{
+    display: flex;;
+}
+
 #player-grid {
-    margin: 20px;
+    margin: 50px;
 }
 
 #enemy-grid {
-    margin: 20px;
+    margin: 50px;
+}
+.row {
+    width: 40px;
+    height: 40px;;
 }
 
 .cell {
-    width: 80px;
-    height: 80px;
-    border: 1px solid black;
-    display: inline-block;
+    width: 40px;
+    height: 40px;
+    border: 1px solid $text-color;
+    //background-color: rgba(12, 77, 175, 0.5);
+
 }
 
 #message-overlay {
@@ -85,31 +109,32 @@ body {
     padding: 50px;
     width: 100%;
     height: 100%;
-    color: black;  
-    background-color: rgba(0, 0, 0, 0.5); /* Halb durchsichtiges Schwarz */
+    color: $text-color;  
+    background-color: rgba(0, 0, 0, 0.5); 
     display: flex;
     justify-content: center;
     align-items: center;
   }
   
   #message-content {
-    background-color: rgb(8, 8, 8);
+    background-color: $text-color;
     padding: 20px;
     border-radius: 10px;
     text-align: center;
   }
 
   #myImage {
-    margin-top: 5%;
-    margin-bottom: 2%;
-    width: 50%;
-    height: 50%;
+    margin-top: 1%;
+    margin-bottom: 1%;
+    width: 60%;
+    height: auto;
     // object-fit: cover;
   }
 
   #captain-select {
     margin-bottom: 20px;
     padding: 5px;
+    border-radius: 5px;
     font-size: 15px;
 }
 
@@ -123,7 +148,7 @@ body {
     padding: 10px;
     height: 100px;
     width: 200px;
-    color: black;
+    color: $text-color;
     background-color: #fff;
     border-radius: 5px;
     box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);

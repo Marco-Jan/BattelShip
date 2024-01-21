@@ -20,7 +20,7 @@ export const displayGrid = (grid, isPlayerGrid) => {
         
         cellElement.style.backgroundColor = 'grey'; 
       } else {
-        cellElement.style.backgroundColor = 'blue';
+        cellElement.style.backgroundColor = 'rgba(12, 77, 175, 0.5)';
       }
 
       cellElement.textContent = '';

@@ -22,7 +22,7 @@ export function showMessage(message) {
 
     document.body.appendChild(messageOverlay);
 
-    // Entferne das Overlay nach 3 Sekunden
+    
     setTimeout(() => {
         document.body.removeChild(messageOverlay);
     }, 1500);
